@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="23788.4" systemVersion="24G90" minimumToolsVersion="Automatic" sourceLanguage="Swift" usedWithCloudKit="YES" userDefinedModelVersionIdentifier="">
+    <entity name="ControlType" representedClassName="ControlType" syncable="YES" codeGenerationType="class">
+        <attribute name="name" optional="YES" attributeType="String"/>
+        <relationship name="controls" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="GearControl" inverseName="controlType" inverseEntity="GearControl"/>
+    </entity>
+    <entity name="GearControl" representedClassName="GearControl" syncable="YES" codeGenerationType="class">
+        <attribute name="name" attributeType="String" defaultValueString=""/>
+        <relationship name="controlType" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="ControlType" inverseName="controls" inverseEntity="ControlType"/>
+        <relationship name="gearItem" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="GearItem" inverseName="controls" inverseEntity="GearItem"/>
+        <relationship name="settings" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Setting" inverseName="control" inverseEntity="Setting"/>
+    </entity>
+    <entity name="GearItem" representedClassName="GearItem" syncable="YES" codeGenerationType="class">
+        <attribute name="name" attributeType="String" defaultValueString=""/>
+        <attribute name="notes" attributeType="String" defaultValueString=""/>
+        <relationship name="controls" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="GearControl" inverseName="gearItem" inverseEntity="GearControl"/>
+        <relationship name="gearType" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="GearType" inverseName="gearItems" inverseEntity="GearType"/>
+        <relationship name="manufacturer" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Manufacturer" inverseName="gearItems" inverseEntity="Manufacturer"/>
+        <relationship name="settings" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Setting" inverseName="gearItem" inverseEntity="Setting"/>
+    </entity>
+    <entity name="GearType" representedClassName="GearType" syncable="YES" codeGenerationType="class">
+        <attribute name="name" optional="YES" attributeType="String"/>
+        <relationship name="gearItems" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="GearItem" inverseName="gearType" inverseEntity="GearItem"/>
+    </entity>
+    <entity name="Manufacturer" representedClassName="Manufacturer" syncable="YES" codeGenerationType="class">
+        <attribute name="name" attributeType="String" defaultValueString=""/>
+        <relationship name="gearItems" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="GearItem" inverseName="manufacturer" inverseEntity="GearItem"/>
+    </entity>
+    <entity name="Preset" representedClassName="Preset" syncable="YES" codeGenerationType="class">
+        <attribute name="name" attributeType="String" defaultValueString=""/>
+        <relationship name="scenario" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Scenario" inverseName="presets" inverseEntity="Scenario"/>
+        <relationship name="settings" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="Setting" inverseName="preset" inverseEntity="Setting"/>
+    </entity>
+    <entity name="Scenario" representedClassName="Scenario" syncable="YES" codeGenerationType="class">
+        <attribute name="name" attributeType="String" defaultValueString=""/>
+        <relationship name="presets" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Preset" inverseName="scenario" inverseEntity="Preset"/>
+    </entity>
+    <entity name="Setting" representedClassName="Setting" syncable="YES" codeGenerationType="class">
+        <attribute name="controlValue" attributeType="String" defaultValueString=""/>
+        <relationship name="control" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="GearControl" inverseName="settings" inverseEntity="GearControl"/>
+        <relationship name="gearItem" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="GearItem" inverseName="settings" inverseEntity="GearItem"/>
+        <relationship name="preset" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Preset" inverseName="settings" inverseEntity="Preset"/>
+    </entity>
+</model>
