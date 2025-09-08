@@ -1,0 +1,87 @@
+# Xcode
+#
+# gitignore contributors: remember to keep this file platform-agnostic
+# gitignore test coverage: https://github.com/github/gitignore/pull/2659
+
+## User-specific files
+*.DS_Store
+.AppleDouble
+.LSOverride
+
+# Pods - For Cocoapods
+#
+# We recommend against adding the Pods directory to your .gitignore. However
+# you should judge for yourself, the pros and cons are mentioned at:
+# https://guides.cocoapods.org/using/using-cocoapods.html#should-i-check-the-pods-directory-into-source-control
+#
+# Pods/
+
+# Carthage
+#
+# Add this line if you are using Carthage
+# https://github.com/Carthage/Carthage
+#
+# Carthage/Build
+
+# fastlane
+#
+# It is recommended to not store the screenshots in the git repo. Instead, use fastlane to re-generate the
+# screenshots whenever they are needed.
+# For more information about the recommended setup visit:
+# https://docs.fastlane.tools/best-practices/source-control/
+#
+fastlane/report.xml
+fastlane/Preview.html
+fastlane/screenshots
+fastlane/test_output
+
+# Code Injection
+#
+# After new code Injection tools there's a generated folder /iOSInjectionProject
+# https://github.com/johnno1962/injectionforxcode
+#
+iOSInjectionProject/
+
+## Build generated
+build/
+DerivedData/
+
+## Various settings
+*.moved-aside
+*.xccheckout
+*.xcscmblueprint
+
+## Obj-C/Swift specific
+*.hmap
+*.ipa
+*.dSYM.zip
+*.dSYM
+
+## Playgrounds
+timeline.xctimeline
+playground.xcworkspace
+
+# Swift Package Manager
+#
+# Add this line if you are using Swift Package Manager
+# https://swift.org/package-manager/
+#
+.build/
+Packages/
+*.xcodeproj
+project.xcworkspace
+xcuserdata/
+!StudioManager.xcodeproj/project.pbxproj
+!StudioManager.xcodeproj/project.xcworkspace
+!StudioManager.xcodeproj/xcshareddata/
+
+# User-specific files
+*.xcuserdatad
+*.xcworkspace
+
+# Bundle artifact
+*.bundle
+
+# Profiled application data
+*.profdata
+*.gcno
