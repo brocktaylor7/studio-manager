@@ -16,7 +16,7 @@ struct AddGearItemView: View {
     // State to hold the form data
     @State private var name: String = ""
     @State private var selectedManufacturer: Manufacturer?
-    @State private var selectedGearType: GearType?
+    @State private var selectedGearTypes = Set<GearType>()
 
     var body: some View {
         NavigationView {
@@ -31,10 +31,12 @@ struct AddGearItemView: View {
                         }
                     }
 
-                    Picker("Gear Type", selection: $selectedGearType) {
-                        Text("Select a Gear Type").tag(nil as GearType?)
-                        ForEach(gearTypes) { gearType in
-                            Text(gearType.name ?? "").tag(gearType as GearType?)
+                    NavigationLink(destination: SelectGearTypesView(selectedGearTypes: $selectedGearTypes)) {
+                        HStack {
+                            Text("Gear Types")
+                            Spacer()
+                            Text("\(selectedGearTypes.count) selected")
+                                .foregroundColor(.secondary)
                         }
                     }
                 }
@@ -62,7 +64,7 @@ struct AddGearItemView: View {
             let newItem = GearItem(context: viewContext)
             newItem.name = name
             newItem.manufacturer = selectedManufacturer
-            newItem.gearType = selectedGearType
+            newItem.gearType = selectedGearTypes as NSSet
 
             do {
                 try viewContext.save()

@@ -17,6 +17,7 @@ struct ContentView: View {
     private var gearItems: FetchedResults<GearItem>
 
     @State private var showingAddSheet = false
+    @State private var showingSettingsSheet = false
 
     var body: some View {
         NavigationView {
@@ -28,6 +29,13 @@ struct ContentView: View {
             }
             .navigationTitle("Gear List")
             .toolbar {
+                ToolbarItem(placement: .navigationBarLeading) {
+                    Button(action: {
+                        showingSettingsSheet.toggle()
+                    }) {
+                        Label("Settings", systemImage: "gear")
+                    }
+                }
                 ToolbarItem {
                     Button(action: {
                         showingAddSheet.toggle()
@@ -38,6 +46,9 @@ struct ContentView: View {
             }
             .sheet(isPresented: $showingAddSheet) {
                 AddGearItemView()
+            }
+            .sheet(isPresented: $showingSettingsSheet) {
+                SettingsView()
             }
             
             Text("Select an item")

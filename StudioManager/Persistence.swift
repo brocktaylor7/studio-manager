@@ -27,7 +27,7 @@ struct PersistenceController {
             let newItem = GearItem(context: viewContext)
             newItem.name = "Sample Gear \(i)"
             newItem.manufacturer = sampleManufacturer
-            newItem.gearType = sampleGearType
+            newItem.gearType = [sampleGearType] as NSSet
         }
         do {
             try viewContext.save()

@@ -14,7 +14,7 @@
         <attribute name="name" attributeType="String" defaultValueString=""/>
         <attribute name="notes" attributeType="String" defaultValueString=""/>
         <relationship name="controls" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="GearControl" inverseName="gearItem" inverseEntity="GearControl"/>
-        <relationship name="gearType" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="GearType" inverseName="gearItems" inverseEntity="GearType"/>
+        <relationship name="gearType" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="GearType" inverseName="gearItems" inverseEntity="GearType"/>
         <relationship name="manufacturer" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Manufacturer" inverseName="gearItems" inverseEntity="Manufacturer"/>
         <relationship name="settings" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Setting" inverseName="gearItem" inverseEntity="Setting"/>
     </entity>
