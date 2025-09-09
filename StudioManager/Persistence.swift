@@ -6,6 +6,7 @@
 //
 
 import CoreData
+import CoreTransferable
 
 struct PersistenceController {
     static let shared = PersistenceController()
@@ -14,9 +15,19 @@ struct PersistenceController {
     static let preview: PersistenceController = {
         let result = PersistenceController(inMemory: true)
         let viewContext = result.container.viewContext
-        for _ in 0..<10 {
-            let newItem = Item(context: viewContext)
-            newItem.timestamp = Date()
+        
+        // Create sample data for previews
+        let sampleManufacturer = Manufacturer(context: viewContext)
+        sampleManufacturer.name = "Warm Audio"
+        
+        let sampleGearType = GearType(context: viewContext)
+        sampleGearType.name = "Microphone"
+        
+        for i in 0..<5 {
+            let newItem = GearItem(context: viewContext)
+            newItem.name = "Sample Gear \(i)"
+            newItem.manufacturer = sampleManufacturer
+            newItem.gearType = sampleGearType
         }
         do {
             try viewContext.save()
