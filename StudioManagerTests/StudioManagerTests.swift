@@ -6,11 +6,12 @@
 //
 
 import Testing
+@testable import StudioManager
 
-struct StudioManagerTests {
+// Main test suite entry point
+// Individual test files:
+// - ValidatorTests.swift - Validation function tests
+// - GearRepositoryTests.swift - Gear CRUD operation tests
+// - PresetRepositoryTests.swift - Preset/Scenario/Setting tests
+// - ErrorHandlerTests.swift - Error handling tests
 
-    @Test func example() async throws {
-        // Write your test here and use APIs like `#expect(...)` to check expected conditions.
-    }
-
-}

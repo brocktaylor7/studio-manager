@@ -43,8 +43,7 @@ struct ManageGearTypesView: View {
                 try viewContext.save()
                 newGearTypeName = "" // Reset for next use
             } catch {
-                let nsError = error as NSError
-                fatalError("Unresolved error \(nsError), \(nsError.userInfo)")
+                ErrorHandler.shared.handle(error, context: "Adding gear type")
             }
         }
     }
@@ -56,8 +55,7 @@ struct ManageGearTypesView: View {
             do {
                 try viewContext.save()
             } catch {
-                let nsError = error as NSError
-                fatalError("Unresolved error \(nsError), \(nsError.userInfo)")
+                ErrorHandler.shared.handle(error, context: "Deleting gear type")
             }
         }
     }

@@ -43,8 +43,7 @@ struct ManageManufacturersView: View {
                 try viewContext.save()
                 newManufacturerName = "" // Reset for next use
             } catch {
-                let nsError = error as NSError
-                fatalError("Unresolved error \(nsError), \(nsError.userInfo)")
+                ErrorHandler.shared.handle(error, context: "Adding manufacturer")
             }
         }
     }
@@ -56,8 +55,7 @@ struct ManageManufacturersView: View {
             do {
                 try viewContext.save()
             } catch {
-                let nsError = error as NSError
-                fatalError("Unresolved error \(nsError), \(nsError.userInfo)")
+                ErrorHandler.shared.handle(error, context: "Deleting manufacturer")
             }
         }
     }
