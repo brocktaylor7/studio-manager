@@ -62,8 +62,7 @@ struct ContentView: View {
             do {
                 try viewContext.save()
             } catch {
-                let nsError = error as NSError
-                fatalError("Unresolved error \(nsError), \(nsError.userInfo)")
+                ErrorHandler.shared.handle(error, context: "Deleting gear item")
             }
         }
     }

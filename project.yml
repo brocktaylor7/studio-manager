@@ -1,0 +1,81 @@
+name: StudioManager
+options:
+  bundleIdPrefix: com.studiomanager
+  deploymentTarget:
+    iOS: "17.0"
+  xcodeVersion: "16.0"
+  generateEmptyDirectories: true
+
+settings:
+  base:
+    SWIFT_VERSION: "5.9"
+    DEVELOPMENT_TEAM: ""
+
+targets:
+  StudioManager:
+    type: application
+    platform: iOS
+    sources:
+      - path: StudioManager
+        excludes:
+          - "**/*.xcassets"
+          - Info.plist
+          - StudioManager.entitlements
+      - path: StudioManager/Assets.xcassets
+        type: folder
+    settings:
+      base:
+        CODE_SIGN_ENTITLEMENTS: StudioManager/StudioManager.entitlements
+        PRODUCT_BUNDLE_IDENTIFIER: com.studiomanager.StudioManager
+        GENERATE_INFOPLIST_FILE: true
+        INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents: true
+        INFOPLIST_KEY_UILaunchScreen_Generation: true
+        INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad: "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight"
+        INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone: "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight"
+        INFOPLIST_KEY_UIBackgroundModes: remote-notification
+
+  StudioManagerTests:
+    type: bundle.unit-test
+    platform: iOS
+    sources:
+      - StudioManagerTests
+    dependencies:
+      - target: StudioManager
+    settings:
+      base:
+        GENERATE_INFOPLIST_FILE: true
+        TEST_HOST: "$(BUILT_PRODUCTS_DIR)/StudioManager.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/StudioManager"
+        BUNDLE_LOADER: "$(TEST_HOST)"
+
+  StudioManagerUITests:
+    type: bundle.ui-testing
+    platform: iOS
+    sources:
+      - StudioManagerUITests
+    dependencies:
+      - target: StudioManager
+    settings:
+      base:
+        GENERATE_INFOPLIST_FILE: true
+        TEST_TARGET_NAME: StudioManager
+
+schemes:
+  StudioManager:
+    build:
+      targets:
+        StudioManager: all
+        StudioManagerTests: [test]
+        StudioManagerUITests: [test]
+    run:
+      config: Debug
+    test:
+      config: Debug
+      targets:
+        - StudioManagerTests
+        - StudioManagerUITests
+    profile:
+      config: Release
+    analyze:
+      config: Debug
+    archive:
+      config: Release
